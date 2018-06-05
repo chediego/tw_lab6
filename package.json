@@ -1,0 +1,25 @@
+{
+  "name": "tw_lab6",
+  "version": "1.0.0",
+  "description": "laboratorio 6",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chediego/tw_lab6.git"
+  },
+  "author": "Diego Valencia y Baris Quiroz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chediego/tw_lab6/issues"
+  },
+  "homepage": "https://github.com/chediego/tw_lab6#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.0-beta4",
+    "nodemon": "^1.17.5"
+  }
+}
