@@ -1,6 +1,11 @@
 
 var express = require('express');
 var app = express();
+var http = require('http');
+var reactViews = require('express-react-views');
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', reactViews.createEngine());
 
 var MongoClient = require('mongodb').MongoClient,
   co = require('co'),
@@ -25,6 +30,9 @@ const insertDocuments = function(insertItems,db, callback) {
     });
   }
 
+app.get('/vista',(req,res)=>{
+    res.render('vista',{nombre:'diego'});
+});
 
   app.get('/insert', function (req, res) {
     console.log(req.query);
