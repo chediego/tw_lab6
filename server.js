@@ -43,7 +43,7 @@ const insertDocuments = function(insertItems,db, callback) {
     MongoClient.connect(url, (err,client)=>{
 
       db = client.db(dbName);
-      db.collection('prueba').find({'apellido': req.query.apellido}).forEach((respuesta)=>{
+      db.collection('prueba').find({'rut': req.query.rut}).forEach((respuesta)=>{
         console.log(respuesta);
         res.send(respuesta);
       });
@@ -73,17 +73,38 @@ const insertDocuments = function(insertItems,db, callback) {
   		}
 
   		db = client.db(dbName); 
+  		
+  		
   		db.collection('prueba').updateOne(
-
-  			{'rut':'182401099'}, 
+  			
+  			{'rut': req.query.rut}, 
   			{
-  				$set:{'nombre':'diego'}
+  				$set:{'nombre':req.query.nombre, 
+  					  'apellido':req.query.apellido, 
+  				      'edad': req.query.edad}
   			}
-		)
+		);
 
   		client.close();
   	});
   	res.sendStatus(200);
+  });
+
+  app.get('/show', (req, res) => {
+
+  	MongoClient.connect(url, (err,client) => {
+
+  		if(err){
+
+  			console.log(err);
+  		}
+
+  		db = client.db(dbName);
+  		db.collection(req.query.bd).find({}).forEach((elem)=>{
+  			console.log(elem);
+  		});
+  		client.close();
+  	}); 
   });
 
   app.listen(3000, function () {
