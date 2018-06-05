@@ -30,8 +30,9 @@ const insertDocuments = function(insertItems,db, callback) {
     console.log(req.query);
     MongoClient.connect(url, function(err, client) {
         db = client.db(dbName);
-        insertDocuments(req.query,db, function() {
+        insertDocuments(req.query,db, function(result) {
         client.close();
+        res.send(result);
         res.send(200);
       });
 
@@ -41,7 +42,7 @@ const insertDocuments = function(insertItems,db, callback) {
 
   app.get('/read', (req,res)=>{
     console.log(req.query);
-  /*  MongoClient.connect(url, (err,client)=>{
+    MongoClient.connect(url, (err,client)=>{
 
       db = client.db(dbName);
       db.collection('prueba').find({'apellido': req.query.apellido}).forEach((respuesta)=>{
@@ -49,7 +50,7 @@ const insertDocuments = function(insertItems,db, callback) {
         res.send(respuesta);
       });
       client.close();
-    });*/
+    });
   });
 
   app.get('/delete',(req,res)=>{
@@ -58,7 +59,8 @@ const insertDocuments = function(insertItems,db, callback) {
       db = client.db(dbName);
       db.collection('prueba').deleteOne({'rut':req.query.rut},(result)=>{
         console.log(result);
-        res.send(200);
+        res.send(result);
+        res.sendStatus(200);
       });
     });
 
