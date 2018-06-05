@@ -14,5 +14,5 @@ ejemplo:localhost:3000/delete?rut=19354635-8
 se debe entregar el rut para seleccionar el alumno a editar y tambien el nombre apellido y edad a editar
 ejemplo: localhost:3000/update?rut=19354635-8&nombre=juanacho&apellido=tumom&edad=11
 
-5.- /vista
+5.- /show
 muestra todos los alumnos
