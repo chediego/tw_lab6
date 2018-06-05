@@ -99,14 +99,20 @@ app.get('/vista',(req,res)=>{
   app.get('/show', (req, res) => {
 
   	MongoClient.connect(url, (err,client) => {
-
+      var arreglo = new Array();
   		if(err){
   			console.log(err);
   		}
   		db = client.db(dbName);
-  		db.collection(req.query.bd).find({}).forEach((elem)=>{
-  			console.log(elem);
-  		});
+  		db.collection('prueba').find({}).toArray((err,result)=>{
+        console.log(typeof result);
+        result.map((dato)=>{
+          arreglo.push(dato);
+        });
+        console.log(typeof arreglo);
+        var stringeado= JSON.stringify(arreglo);
+        res.render('vista',{usuarios:stringeado});
+      });
   		client.close();
   	});
   });
