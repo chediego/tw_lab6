@@ -21,7 +21,6 @@ const insertDocuments = function(insertItems,db, callback) {
     collection.insertMany([
       insertItems
     ], function(err, result) {
-      console.log("Inserted 3 documents into the collection");
       callback(result);
     });
   }
@@ -41,7 +40,7 @@ const insertDocuments = function(insertItems,db, callback) {
   });
 
   app.get('/read', (req,res)=>{
-    console.log(req.query.keys());
+    console.log(req.query);
   /*  MongoClient.connect(url, (err,client)=>{
 
       db = client.db(dbName);
@@ -51,6 +50,18 @@ const insertDocuments = function(insertItems,db, callback) {
       });
       client.close();
     });*/
+  });
+
+  app.get('/delete',(req,res)=>{
+    console.log(req.query.rut);
+    MongoClient.connect(url,(err,client)=>{
+      db = client.db(dbName);
+      db.collection('prueba').deleteOne({'rut':req.query.rut},(result)=>{
+        console.log(result);
+        res.send(200);
+      });
+    });
+
   });
 
   app.listen(3000, function () {
