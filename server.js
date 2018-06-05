@@ -92,6 +92,19 @@ const insertDocuments = function(insertItems,db, callback) {
 
   app.get('/show', (req, res) => {
 
+  	MongoClient.connect(url, (err,client) => {
+
+  		if(err){
+
+  			console.log(err);
+  		}
+
+  		db = client.db(dbName);
+  		db.collection(req.query.bd).find({}).forEach((elem)=>{
+  			console.log(elem);
+  		});
+  		client.close();
+  	}); 
   });
 
   app.listen(3000, function () {
