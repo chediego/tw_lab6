@@ -1,0 +1,18 @@
+1.- uso de /insert:
+la insercion del alumno debe ser agregando nombre,apellido,edad y rut.
+ejemplo: localhost:3000/insert?nombre=diego&apellido=valencia&edad=22&rut=19354635-8
+
+2.- uso de /read:
+para la lectura de algun alumno debe ser realizada solamente con el rut.
+ejemplo: localhost:3000/read?rut=24354635-8
+
+3.- uso de /delete:
+solo se necesita el rut para eliminar el usuario
+ejemplo:localhost:3000/delete?rut=19354635-8
+
+4.- uso de /update
+se debe entregar el rut para seleccionar el alumno a editar y tambien el nombre apellido y edad a editar
+ejemplo: localhost:3000/update?rut=19354635-8&nombre=juanacho&apellido=tumom&edad=11
+
+5.- /vista
+muestra todos los alumnos
