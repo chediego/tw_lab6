@@ -31,13 +31,11 @@ const insertDocuments = function(insertItems,db, callback) {
     MongoClient.connect(url, function(err, client) {
         db = client.db(dbName);
         insertDocuments(req.query,db, function(result) {
-        client.close();
         res.send(result);
-        res.send(200);
+        res.sendStatus(200);
+        client.close();
       });
-
     });
-
   });
 
   app.get('/read', (req,res)=>{
@@ -63,7 +61,29 @@ const insertDocuments = function(insertItems,db, callback) {
         res.sendStatus(200);
       });
     });
+  });
 
+  app.get('/update', (req, res) => {
+
+  	MongoClient.connect(url, (err, client) => {
+
+  		if(err){
+
+  			console.log(err);
+  		}
+
+  		db = client.db(dbName); 
+  		db.collection('prueba').updateOne(
+
+  			{'rut':'182401099'}, 
+  			{
+  				$set:{'nombre':'diego'}
+  			}
+		)
+
+  		client.close();
+  	});
+  	res.sendStatus(200);
   });
 
   app.listen(3000, function () {
